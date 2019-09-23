@@ -74,6 +74,41 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		return e;
 	}
 	
+	/**
+	* Appends the specified queue to this queue
+	* post: all elements from the specified queue are appended
+	* to this queue. The specified queue (q) is empty after the call.
+	* @param q the queue to append
+	* @throws IllegalArgumentException if this queue and q are identical
+	*/
+	public void append(FifoQueue<E> q) {
+		if(this.hashCode() == q.hashCode()) {
+			throw new IllegalArgumentException();
+		}
+		while(q.size() > 0) {
+			E e = q.peek();
+			if(q.size() == 1) {
+				q.last.next = null;
+				q.last = null;
+				q.size--;
+			} else if(q.size() > 1) {
+				q.last.next = q.last.next.next;
+				q.size--;
+			}
+			if(size == 0) {
+				last = new QueueNode<E>(e);
+				last.next = last;
+			} else if(size > 0) {
+				QueueNode<E> newLast = new QueueNode<E>(e);
+				newLast.next = last.next;
+				last.next = newLast;
+				last = newLast;
+			}
+			size++;
+		}
+	}
+
+	
 	/**	
 	 * Returns an iterator over the elements in this queue
 	 * @return an iterator over the elements in this queue
@@ -86,27 +121,30 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		private QueueNode<E> pos;
 		
 		private QueueIterator() {
-			if(size > 0) {
+			if(last != null) {
 				pos = last.next;
 			} else {
 				pos = null;
 			}
+			//pos = (last != null) ? last.next : null;
 		}
 
 		public boolean hasNext() {
-			return pos != null;
+			return (pos != null);
 		}
 
 		public E next() {
 			if(hasNext()) {
 				E e = pos.element;
-				pos = pos.next;
-				if(pos == last) {
-					pos.next = null;
+				if(pos != last) {
+					pos = pos.next;
+				} else {
+					pos = null;
 				}
 				return e;
+			} else {
+				throw new NoSuchElementException();
 			}
-			throw new NoSuchElementException();
 		}
 	}
 	

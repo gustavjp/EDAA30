@@ -23,9 +23,10 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			last = new QueueNode<E>(e);
 			last.next = last;
 		} else if(size > 0) {
-			last.next = new QueueNode<E>(e);
-			last.next.next = last;
-			last = last.next;
+			QueueNode<E> newLast = new QueueNode<E>(e);
+			newLast.next = last.next;
+			last.next = newLast;
+			last = newLast;
 		}
 		size++;
 		return true;
@@ -62,7 +63,6 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 */
 	public E poll() {
 		E e = peek();
-		QueueNode<E> first = new QueueNode<E>(e);
 		if(size == 1) {
 			last.next = null;
 			last = null;
@@ -86,18 +86,31 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 		private QueueNode<E> pos;
 		
 		private QueueIterator() {
-			pos = last.next;
+			if(last != null) {
+				pos = last.next;
+			} else {
+				pos = null;
+			}
+			//pos = (last != null) ? last.next : null;
 		}
 
 		public boolean hasNext() {
-			return size > 0;
+			return (pos != null);
 		}
 
 		public E next() {
-			pos = pos.next;
-			return pos.element;
+			if(hasNext()) {
+				E e = pos.element;
+				if(pos != last) {
+					pos = pos.next;
+				} else {
+					pos = null;
+				}
+				return e;
+			} else {
+				throw new NoSuchElementException();
+			}
 		}
-		
 	}
 	
 	private static class QueueNode<E> {

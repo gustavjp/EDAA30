@@ -1,0 +1,50 @@
+package queue_singlelinkedlist;
+
+import static org.junit.Assert.*;
+
+import java.util.Queue;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class TestAppendFifoQueue {
+	
+	private FifoQueue<Integer> q1;
+	private FifoQueue<Integer> q2;
+
+	@Before
+	public void setUp() throws Exception {
+		q1 = new FifoQueue<Integer>();
+		q2 = new FifoQueue<Integer>();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		q1 = null;
+		q2 = null;
+	}
+
+	@Test
+	public void testTwoEmptyQueues() {
+		q1.append(q2);
+		
+	}
+	
+	@Test
+	public void test2() {
+	}
+	
+	@Test
+	public void test3() {
+	}
+	
+	@Test
+	public void test4() {
+	}
+	
+	@Test
+	public void test5() {
+	}
+
+}
