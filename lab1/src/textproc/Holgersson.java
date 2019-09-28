@@ -12,7 +12,6 @@ public class Holgersson {
 			"öland", "östergötland" };
 
 	public static void main(String[] args) throws FileNotFoundException {
-		long t0 = System.nanoTime();
 		Scanner s = new Scanner(new File("nilsholg.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
@@ -32,7 +31,7 @@ public class Holgersson {
 		processorList.add(new SingleWordCounter("norge"));
 		TextProcessor mp = new MultiWordCounter(REGIONS);
 		TextProcessor gp = new GeneralWordCounter(stopWords);
-		
+		long t0 = System.nanoTime();
 		while(s.hasNext()) {
 			String word = s.next().toLowerCase();
 			for(TextProcessor p : processorList) {
@@ -42,11 +41,13 @@ public class Holgersson {
 			gp.process(word);
 		}
 		s.close();
-		
+		System.out.println("SingleWordCounter: ");
 		for(TextProcessor p : processorList) {
 			p.report();
 		}
+		System.out.println("MultiWordCounter: ");
 		mp.report();
+		System.out.println("GeneralWordCounter: ");
 		gp.report();
 		long t1 = System.nanoTime();
 		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");

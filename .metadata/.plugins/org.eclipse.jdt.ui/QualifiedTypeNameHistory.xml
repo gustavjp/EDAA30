@@ -5,4 +5,5 @@
     <fullyQualifiedTypeName name="java.util.HashSet"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
     <fullyQualifiedTypeName name="java.util.Map.Entry"/>
+    <fullyQualifiedTypeName name="queue_singlelinkedlist.FifoQueue"/>
 </qualifiedTypeNameHistroy>
