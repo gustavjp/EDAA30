@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="TestAppendFifoQueue (1)" project="lab2" tests="5" started="5" failures="0" errors="0" ignored="0">
-  <testsuite name="testqueue.TestAppendFifoQueue" time="0.001">
-    <testcase name="testAppendTwoNonEmpty" classname="testqueue.TestAppendFifoQueue" time="0.001"/>
-    <testcase name="testAppendEmptyToNonEmpty" classname="testqueue.TestAppendFifoQueue" time="0.0"/>
-    <testcase name="testTwoEmptyQueues" classname="testqueue.TestAppendFifoQueue" time="0.0"/>
-    <testcase name="testAppendNonEmptyToEmpty" classname="testqueue.TestAppendFifoQueue" time="0.0"/>
-    <testcase name="testAppendWithSelf" classname="testqueue.TestAppendFifoQueue" time="0.0"/>
-  </testsuite>
-</testrun>

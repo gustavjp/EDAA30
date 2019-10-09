@@ -26,7 +26,7 @@ public class TestAppendFifoQueue {
 	public void testTwoEmptyQueues() {
 		q1.append(q2);
         assertEquals("Front of queue q1 not null", null, q1.peek());
-        assertEquals("Front of queue q2 not null", null, q2.peek());
+        assertEquals("Front of queue a2 not null", null, q2.peek());
         assertEquals("Size of q1 is not 0", 0, q1.size());
         assertEquals("Size of q2 is not 0", 0, q2.size());
 	}
