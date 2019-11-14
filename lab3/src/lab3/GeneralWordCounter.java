@@ -1,4 +1,4 @@
-package textproc;
+package lab3;
 import java.util.*;
 
 public class GeneralWordCounter implements TextProcessor {

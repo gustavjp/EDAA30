@@ -7,6 +7,8 @@
         <listEntry value="1"/>
     </listAttribute>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="textproc.Holgersson"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="lab1"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="--module-path &quot;C:\Users\gusta\Documents\javafx-sdk-11.0.2\lib&quot;&#13;&#10;--add-modules javafx.controls,javafx.fxml"/>
 </launchConfiguration>
