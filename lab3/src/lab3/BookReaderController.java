@@ -11,9 +11,11 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -73,12 +75,17 @@ public class BookReaderController extends Application {
 			words.sort((e1, e2) -> e1.getValue().compareTo(e2.getValue()));
 		});
 		b3.setOnAction(event -> {
-			System.out.println(tf.getText());
 			Predicate<Map.Entry<String, Integer>> searchPredicate = me -> me.getKey().equals(tf.getText().toLowerCase().replaceAll("\\s", ""));
 			try {
 				listView.scrollTo(words.filtered(searchPredicate).get(0));
-			} catch (Exception e){
-				
+			} catch (IndexOutOfBoundsException e){
+				Alert a = new Alert(Alert.AlertType.ERROR, "The word " + tf.getText().toLowerCase().replaceAll("\\s", "") + " not found in list.");
+				a.show();
+			}
+		});
+		tf.setOnKeyPressed(event -> {
+			if(event.getCode().equals(KeyCode.ENTER)) {
+				b3.fire();
 			}
 		});
 	}
