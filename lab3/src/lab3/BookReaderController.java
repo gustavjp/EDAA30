@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class BookReaderController extends Application {
@@ -29,6 +30,7 @@ public class BookReaderController extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		FileChooser fc = new FileChooser();
 		Scanner s = new Scanner(new File("nilsholg.txt"));
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
@@ -56,11 +58,12 @@ public class BookReaderController extends Application {
 		primaryStage.show();
 		
 		HBox hb = new HBox();
+		Button file = new Button("File...");
 		Button b1 = new Button("Alphabetic");
 		Button b2 = new Button("Frequency");
 		Button b3 = new Button("Search");
 		TextField tf = new TextField();
-		hb.getChildren().addAll(b1, b2, b3, tf);
+		hb.getChildren().addAll(file, b1, b2, b3, tf);
 		root.setBottom(hb);
 		
 		ObservableList<Map.Entry<String, Integer>> words 
@@ -68,6 +71,9 @@ public class BookReaderController extends Application {
 		ListView<Map.Entry<String, Integer>> listView = new ListView<Map.Entry<String, Integer>>(words);
 		root.setCenter(listView);
 		
+		file.setOnAction(event -> {
+			File f = fc.showOpenDialog(primaryStage);
+		});
 		b1.setOnAction(event -> {
 			words.sort((e1, e2) -> e1.getKey().compareTo(e2.getKey()));
 		});
