@@ -58,13 +58,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 		if(node == null) {
 			return 0;
 		} else {
-			int left = 1 + height(node.left);
-			int right = 1 + height(node.right);
-			if(left >= right) {
-				return left;
-			} else {
-				return right;
-			}
+			return Math.max(1 + height(node.left), 1 + height(node.right));
 		}
 	}
 	
@@ -87,7 +81,6 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	}
 	
 	private void printTree(BinaryNode<E> node) {
-		//System.out.println(node.element);
 		if(node.left != null) {
 			printTree(node.left);
 		}
@@ -95,14 +88,19 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 		if(node.right != null) {
 			printTree(node.right);
 		}
-		//System.out.println(node.element);
 	}
 
 	/** 
 	 * Builds a complete tree from the elements in the tree.
 	 */
 	public void rebuild() {
-
+		if(size < 1) {
+			System.out.println("The tree is empty");
+		} else {
+			E[] array = (E[]) new Comparable[size];
+			toArray(root, array, 0);
+			root = buildTree(array, 0, array.length - 1);
+		}
 	}
 	
 	/*
@@ -112,7 +110,12 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * position in a).
 	 */
 	private int toArray(BinaryNode<E> n, E[] a, int index) {
-		return 0;
+		if(n == null) {
+			return index;
+		}
+		index = toArray(n.left, a, index);
+		a[index] = n.element;
+		return toArray(n.right, a, index + 1);
 	}
 	
 	/*
@@ -121,7 +124,15 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(E[] a, int first, int last) {
-		return null;
+		if(last < first) {
+			return null;
+		}
+		int middle = (first + last) / 2;
+		BinaryNode<E> middleNode = new BinaryNode<E>(a[middle]);
+		middleNode.left = buildTree(a, first, middle - 1);
+		middleNode.right = buildTree(a, middle + 1, last);
+		
+		return middleNode;
 	}
 	
 
@@ -139,15 +150,12 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	
 	public static void main(String[] args) {
 		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
-		bst.add(3);
-		for(int i = 1; i < 6; i++) {
+		for(int i = 1; i < 15; i+=2) {
 			bst.add(i);
 		}
-		bst.add(13);
-		bst.add(10);
 		bst.printTree();
-		System.out.println("ajsdj");
 		BSTVisualizer bstv = new BSTVisualizer("Trädet", 500, 500);
+		//bst.rebuild();
 		bstv.drawTree(bst);
 	}
 	
