@@ -40,7 +40,7 @@ public class TestBST {
 		assertEquals("Size not right", s, 6);
 		assertFalse(bst.add(9));
 		s = bst.size();
-		assertEquals("Size not right", s, 6);
+		assertEquals("Size not right", bst.size(), 6);
 		bst.printTree();
 	}
 

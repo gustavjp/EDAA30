@@ -155,7 +155,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 		}
 		bst.printTree();
 		BSTVisualizer bstv = new BSTVisualizer("Trädet", 500, 500);
-		//bst.rebuild();
+		bst.rebuild();
 		bstv.drawTree(bst);
 	}
 	

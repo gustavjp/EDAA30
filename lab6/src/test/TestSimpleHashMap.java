@@ -18,9 +18,9 @@ public class TestSimpleHashMap {
 
 	@Before
 	public void setUp() throws Exception {
-//		m = new SimpleHashMap<Integer, Integer>(10);
-//		m16 = new SimpleHashMap<Integer, Integer>();
-//		s = new SimpleHashMap<String, Integer>();
+		m = new SimpleHashMap<Integer, Integer>(10);
+		m16 = new SimpleHashMap<Integer, Integer>();
+		s = new SimpleHashMap<String, Integer>();
 	}
 
 	@After
@@ -185,6 +185,18 @@ public class TestSimpleHashMap {
 		for (int i : randNbrs) {			
 			assertEquals("key not found in map:" + i, new Integer(i), m16.get(i));
 		}
+	}
+	
+	@Test
+	public final void main() {
+		/**
+		SimpleHashMap<Integer, Integer> map = new SimpleHashMap<Integer, Integer>(10);
+		assertNull("wrong put(1, 1):", m.put(1, 1));
+		assertEquals("wrong size():", 1, m.size());
+		for(int i = 0; i < 10; i++) {
+			assertEquals("wrong return", (Integer) 1, map.put(1, 1));
+		}
+		*/
 	}
 	
 	@Test
