@@ -105,11 +105,23 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		if(!isEmpty()) {
 			K key = (K) arg0;
 			int index = index(key);
-			Entry<K,V> temp = table[index];
-			if(temp.getKey().equals(key)) {
-				table[index] = table[index].next;
-				size--;
-				return temp.getValue();
+			Entry<K, V> e = table[index];
+			if (e != null) {
+				if (e.getKey().equals(key)) {
+					table[index] = e.next;
+					size--;
+					return e.getValue();
+				} else {
+					while (e.next != null) {
+						if (e.next.getKey().equals(key)) {
+							V v = e.next.getValue();
+							e.next = e.next.next;
+							size--;
+							return v;
+						}
+						e = e.next;
+					}
+				}
 			}
 		}
 		return null;
@@ -151,6 +163,13 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		@Override
 		public String toString() {
 			return key + " = " + value;
-		}	
+		}
+		
+		public boolean equals(Entry<K,V> e) {
+			if(key == e.key && value == e.value) {
+				return true;
+			}
+			return false;
+		}
 	}
 }

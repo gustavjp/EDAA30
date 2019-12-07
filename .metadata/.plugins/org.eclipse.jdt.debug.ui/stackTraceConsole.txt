@@ -1,8 +1,5 @@
-java.lang.AssertionError: poll returns incorrect element expected:<1> but was:<4>
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.junit.Assert.failNotEquals(Assert.java:834)
-	at org.junit.Assert.assertEquals(Assert.java:645)
-	at testqueue.TestFifoQueue.testOrder(TestFifoQueue.java:104)
+java.lang.NullPointerException
+	at test.TestSimpleHashMap.main(TestSimpleHashMap.java:204)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

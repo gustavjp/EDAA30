@@ -189,14 +189,15 @@ public class TestSimpleHashMap {
 	
 	@Test
 	public final void main() {
-		/**
-		SimpleHashMap<Integer, Integer> map = new SimpleHashMap<Integer, Integer>(10);
-		assertNull("wrong put(1, 1):", m.put(1, 1));
-		assertEquals("wrong size():", 1, m.size());
-		for(int i = 0; i < 10; i++) {
-			assertEquals("wrong return", (Integer) 1, map.put(1, 1));
+		SimpleHashMap<Integer, Integer> shm = new SimpleHashMap<Integer, Integer>(10);
+		java.util.Random random = new java.util.Random(123456);
+		HashSet<Integer> randNbrs = new HashSet<Integer>();
+		for (int i = 0; i < 100; i++) {
+			int r = random.nextInt(10000);			
+			shm.put(-i, i);
+			randNbrs.add(r);
 		}
-		*/
+		System.out.println(shm.show());
 	}
 	
 	@Test
