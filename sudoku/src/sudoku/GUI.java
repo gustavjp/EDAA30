@@ -13,6 +13,18 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GUI extends Application {
+	
+	int[][] m2 = {
+			{0, 0, 8, 0, 0, 9, 0, 6, 2},
+			{0, 0, 0, 0, 0, 0, 0, 0, 5},
+			{1, 0, 2, 5, 0, 0, 0, 0, 0},
+			{0, 0, 0, 2, 1, 0, 0, 9, 0},
+			{0, 5, 0, 0, 0, 0, 6, 0, 0},
+			{6, 0, 0, 0, 0, 0, 0, 2, 8},
+			{4, 1, 0, 6, 0, 8, 0, 0, 0},
+			{8, 6, 0, 0, 3, 0, 1, 0, 0},
+			{0, 0, 0, 0, 0, 0, 4, 0, 0},
+	};
 
 	public static void main(String[] args) {
 		launch(args);
@@ -27,6 +39,7 @@ public class GUI extends Application {
 		HBox hbb = new HBox();
 		Button solve = new Button("Solve");
 		Button clear = new Button("Clear");
+		Button example = new Button("Example");
 		TextField[][] tfa = new TextField[9][9];
 
 		tp.setPrefSize(500, 500);
@@ -98,12 +111,27 @@ public class GUI extends Application {
 			for (int i = 0; i < 9; i++) {
 				for (int j = 0; j < 9; j++) {
 					tfa[i][j].setText("");
+					matrix[i][j] = 0;
+				}
+			}
+		});
+		
+		example.setOnAction(Event -> {
+			for (int i = 0; i < 9; i++) {
+				for (int j = 0; j < 9; j++) {
+					if(m2[i][j] != 0) {
+						tfa[i][j].setText(String.valueOf(m2[i][j]));
+					} else {
+						tfa[i][j].setText("");
+					}
+					matrix[i][j] = m2[i][j];
 				}
 			}
 		});
 
 		hbb.getChildren().add(solve);
 		hbb.getChildren().add(clear);
+		hbb.getChildren().add(example);
 
 		hbb.setAlignment(Pos.CENTER);
 
@@ -112,6 +140,8 @@ public class GUI extends Application {
 
 		Scene scene = new Scene(vb, 500, 500);
 		primaryStage.setScene(scene);
+		primaryStage.setTitle("Sudoku");
+		primaryStage.setResizable(false);
 		primaryStage.show();
 
 	}

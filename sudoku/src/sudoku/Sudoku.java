@@ -71,18 +71,48 @@ public class Sudoku {
 			return true;
 		}
 		if (matrix[row][col] != 0) {
+			/*
 			if (solve(col == 8 ? (row + 1) : row, (col + 1) % 9)) {
 				return true;
 			}
+			*/
+			//
+			if (col == 8) {
+				if (solve(row + 1, (col + 1) % 9)) {
+					return true;
+				}
+			} else {
+				if (solve(row, (col + 1) % 9)) {
+					return true;
+				}
+			}
+			//
 		} else {
 			for (int i = 0; i < 9; i++) {
 				if (isValid(row, col, i + 1)) {
 					matrix[row][col] = (i + 1);
+					/*
 					if (solve(col == 8 ? (row + 1) : row, (col + 1) % 9)) {
 						return true;
 					} else {
 						matrix[row][col] = 0;
 					}
+					*/
+					//
+					if (col == 8) {
+						if (solve(row + 1, 0)) {
+							return true;
+						} else {
+							matrix[row][col] = 0;
+						}
+					} else {
+						if (solve(row, col + 1)) {
+							return true;
+						} else {
+							matrix[row][col] = 0;
+						}
+					}
+					//
 				}
 			}
 		}

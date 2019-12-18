@@ -65,27 +65,27 @@ public class SudokuTest {
 	@After
 	public void tearDown() throws Exception {
 		s = null;
-		st = null;
 		m = null;
+		m2 = null;
 	}
 	
 	@Test
 	public final void testToString() {
-		Sudoku sud = new Sudoku(m2);
-		sud.solve();
-		System.out.println(sud.toString());
+		Sudoku s = new Sudoku(m2);
+		s.solve();
+		System.out.println(s.toString());
 		
 	}
 	
 	@Test
 	public final void getMatrix() {
-		s = new Sudoku(m);
+		s = new Sudoku(m2);
 		assertEquals("Didn't get expected matrix back", s.getMatrix(), m);
 	}
 	
 	@Test
 	public final void testSolvabeSudoku() {
-		s = new Sudoku(m);
+		s = new Sudoku(m2);
 		assertTrue("Solvable sudoku is solvable", s.solve());
 	}
 	
@@ -105,8 +105,8 @@ public class SudokuTest {
 	
 	@Test
 	public final void testSolveEmptySudoku() {
-		Sudoku empty = new Sudoku();
-		assertTrue("Empty sudoku is always solvable", empty.solve());
+		Sudoku s = new Sudoku();
+		assertTrue("Empty sudoku is always solvable", s.solve());
 	}
 
 }
